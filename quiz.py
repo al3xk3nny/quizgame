@@ -1,3 +1,5 @@
+import sys # Import sys.argv for command line arguments
+
 def show_menu():
     print("Quiz Game")
     print("----------")
@@ -45,15 +47,48 @@ def add_a_question():
         f.write(line)
 
 # 3. Exit.
-while True:
-    option = show_menu() # No conflict with naming variable "option" as "option" variable in show_menu function appears within a function.
+# while True:
+#     option = show_menu() # No conflict with naming variable "option" as "option" variable in show_menu function appears within a function.
     
-    if option == "1":
-        ask_questions()
+#     if option == "1":
+#         ask_questions()
         
-    if option == "2":
-        add_a_question()
+#     if option == "2":
+#         add_a_question()
     
-    if option == "3": # Important to use "" as comparing against a string in show_menu function above.
-        break
+#     if option == "3": # Important to use "" as comparing against a string in show_menu function above.
+#         break
 
+
+# Entire quiz consists of three functions and an entry into the quiz starting at "while True" - only left aligned code line that is not a function. However, this can also be turned into a funtion. Call it "def main()" for example.
+
+def main():
+    while True:
+        option = show_menu()
+        
+        if option == "1":
+            ask_questions()
+            
+        if option == "2":
+            add_a_question()
+        
+        if option == "3":
+            break
+
+# ...then, all you have to do is call the "def main()" function.
+
+# main()
+
+# All best python code should consist of functions and one simple code line entry.
+
+# Challenge
+# If with sys.argv we enter "python3 quiz.py --ask" it brings us into the "ask_questions" function. If we enter "python3 quiz.py --add" it brings us into the "add_a_question" function. If we enter "python3 quiz.py --menu" it brings us into the "show_menu" function.
+
+if sys.argv[1] == ("--ask"):
+    ask_questions()
+elif sys.argv[1] == ("--add"):
+    add_a_question()
+elif sys.argv[1] == ("--menu"):
+    main()
+    
+# The "--" is just a convention in Unix for sending in switches. It would work just the same without them.    
